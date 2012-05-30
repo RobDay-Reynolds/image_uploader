@@ -39,11 +39,14 @@ class ImagesController < ApplicationController
     @users = User.all
   end
 
+  def blurb
+    @image = Image.find(params[:id])
+  end
+
   # POST /images
   # POST /images.xml
   def create
     @image = Image.new(params[:image])
-    @user = User.new(params[:user])
 
     respond_to do |format|
       if @image.save
@@ -60,7 +63,6 @@ class ImagesController < ApplicationController
   # PUT /images/1.xml
   def update
     @image = Image.find(params[:id])
-    @user = User.new(params[:user])
 
     respond_to do |format|
       if @image.update_attributes(params[:image])
@@ -83,5 +85,9 @@ class ImagesController < ApplicationController
       format.html { redirect_to(images_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def random
+    @image = Image.first(:offset => rand(Image.count))
   end
 end

@@ -4,7 +4,7 @@
 
   <p>
     <label>Submitter</label><br />
-    <%= select("user", "user_id", @users.collect {|u| [ u.name, u.id ] }, { :include_blank => true }) %>
+    <%= select("image", "user_id", @users.collect {|u| [ u.name, u.id ] }, { :include_blank => true }) %>
   </p>
   <p>
     <%= f.label :description %><br />

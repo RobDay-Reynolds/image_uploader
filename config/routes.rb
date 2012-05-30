@@ -1,4 +1,9 @@
 Nomoreboysclub::Application.routes.draw do
+  
+  match 'i/:id/d' => 'images#blurb'
+  match 'go' => 'images#random'
+  match 'go/:id' => 'images#blurb'
+  
   resources :users
 
   resources :images

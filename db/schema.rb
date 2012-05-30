@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(:version => 20120530053327) do
 
   create_table "images", :force => true do |t|
-    t.integer  "user_no"
+    t.integer  "user_id"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"

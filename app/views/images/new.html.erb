@@ -1,11 +1,14 @@
 <h1>New image</h1>
 
 <% form_for(@image, :html => { :multipart => true }) do |f| %>
-  <%= f.error_messages %>
 
   <p>
+    <label>Submitter</label><br />
+    <%= select("user", "user_id", @users.collect {|u| [ u.name, u.id ] }, { :include_blank => true }) %>
+  </p>
+  <p>
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.text_area :description %>
   </p>
   <p>
     <%= f.label :picture %><br />

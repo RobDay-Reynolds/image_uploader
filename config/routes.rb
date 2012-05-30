@@ -1,4 +1,6 @@
 Nomoreboysclub::Application.routes.draw do
+  resources :users
+
   resources :images
 
   # The priority is based upon order of creation:

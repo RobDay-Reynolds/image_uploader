@@ -25,6 +25,7 @@ class ImagesController < ApplicationController
   # GET /images/new.xml
   def new
     @image = Image.new
+    @users = User.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,12 +36,14 @@ class ImagesController < ApplicationController
   # GET /images/1/edit
   def edit
     @image = Image.find(params[:id])
+    @users = User.all
   end
 
   # POST /images
   # POST /images.xml
   def create
     @image = Image.new(params[:image])
+    @user = User.new(params[:user])
 
     respond_to do |format|
       if @image.save
@@ -57,6 +60,7 @@ class ImagesController < ApplicationController
   # PUT /images/1.xml
   def update
     @image = Image.find(params[:id])
+    @user = User.new(params[:user])
 
     respond_to do |format|
       if @image.update_attributes(params[:image])

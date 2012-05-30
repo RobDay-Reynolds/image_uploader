@@ -2,13 +2,79 @@
 <html>
 <head>
   <title>No More Boys Club</title>
-  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag :all %> 
+  <link rel="stylesheet" href="/main.css" type="text/css" />
+<!--  <%= javascript_include_tag :all %> -->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/jquery.textfill.js"></script>
+  <script type="text/javascript">
+    function resizeImage(cssSelector, isInitialResize) {
+        var offset = 0;
+        if (isInitialResize) {
+            offset = 15;
+        }
+        
+        var width = $(window).width() + offset;
+        var height = $(window).height() + offset;
+        var imageWidth = $(cssSelector).width();
+        var imageHeight = $(cssSelector).height();
+
+        var canvasWidth = parseInt(width);
+        var canvasHeight = parseInt(height);
+
+        var minRatio = Math.min(canvasWidth / imageWidth, canvasHeight / imageHeight);
+        var newImgWidth = minRatio * imageWidth;
+        var newImgHeight = minRatio * imageHeight;
+
+        var newImgX = (canvasWidth - newImgWidth) / 2;
+        var newImgY = (canvasHeight - newImgHeight) / 2;
+        
+        $(cssSelector).css({
+            position: 'absolute',
+            top: newImgY,
+            left: newImgX,
+            width: newImgWidth,
+            height: newImgHeight
+        });
+    }
+    $(window).load(function(){
+        var minWidth = ($(window).width()/18);        
+        var maxWidth = ($(window).width()/3);        
+
+        resizeImage('.main_image', 1);
+        $('#content').textfill({
+            minFontPixels: minWidth,
+            maxFontPixels: maxWidth
+        });
+        $('.main_text').css({
+            position: 'absolute',
+            left: ($(window).width() - $('.main_text').outerWidth())/2,
+            top: ($(window).height() - ($('.main_text').outerHeight() + 10))/2
+        });
+       
+        $(window).resize(function(){
+            var minWidth = ($(window).width()/18);        
+            var maxWidth = ($(window).width()/3);        
+
+            resizeImage('.main_image');
+            $('#content').textfill({
+                minFontPixels: minWidth,
+                maxFontPixels: maxWidth
+            });
+            $('.main_text').css({
+                position: 'absolute',
+                left: ($(window).width() - $('.main_text').outerWidth() + 10)/2,
+                top: ($(window).height() - ($('.main_text').outerHeight() + 10))/2
+            });
+        });
+    });                                   
+  </script>
+  <script type="text/javascript" src="/jquery.imagefit-0.2.js"></script>
   <%= csrf_meta_tag %>
 </head>
 <body>
-
+<div id="content">
 <%= yield %>
-
+</div>
 </body>
 </html>

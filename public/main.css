@@ -5,6 +5,8 @@ body { font-size: 12px; font-family: Palatino, serif; background: #fff; }
 img.center   { display: block;   margin-left: auto;   margin-right: auto; }
 .center      { display: block;   margin-left: auto;   margin-right: auto; text-align:center; }
 
+span { text-align: justify; text-justify: auto; width: 95% }
+
 .content { min-width: 800px; min-height: 400px; }
 .header { font-size: 84px; color: #FF6600; font-weight: lighter; min-width: 800px; text-align: center; }
 h1 { font-size: 48px; color: #FF6600; font-weight: lighter; min-width: 800px; text-align: center; }

@@ -1,5 +1,5 @@
-<h1>New user</h1>
-
+<h1>New Submitter</h1>
+<center>
 <% form_for(@user, :html => { :multipart => true }) do |f| %>
   <p>
     <%= f.label :name %><br />
@@ -9,13 +9,15 @@
     <%= f.label :website %><br />
     <%= f.text_field :website %>
   </p>
-  <p>
+<!--  <p>
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </p>
+-->
   <p>
     <%= f.submit 'Create' %>
   </p>
 <% end %>
 
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', '/images/new' %>
+</center>

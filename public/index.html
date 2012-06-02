@@ -14,6 +14,7 @@
                                        
                 $(window).resize(function(){
                     $('#header').css({
+                        'z-index': 50,
                         position: 'absolute',
                         left: ($(window).width() - $('#header').outerWidth())/2,
                         top: ($(window).height() - ($('#header').outerHeight() + 10))/2
@@ -23,14 +24,17 @@
                         left: ($(window).width() - $('#about').outerWidth())/2,
                         top: ($(window).height() - ($('#header').outerHeight() - 350))/2
                     });
-                    var topPosition = 400;
-                    if (($(window).height() - 50) > 400) {
-                        topPosition = ($(window).height() - 50);
-                    }
-                    $('#footer').css({
+                    $('#aboutHiddenLink').css({
+                        'z-index': 0,
                         position: 'absolute',
-                        left: ($(window).width() - $('#footer').outerWidth())/2,
-                        top: topPosition
+                        left: ($(window).width() - 750)/2,
+                        top: (($(window).height() - $('#header').outerHeight()) /2) - 75
+                    });
+                    $('#usersHiddenLink').css({
+                        'z-index': 0,
+                        position: 'absolute',
+                        left: ($(window).width() - 750)/2,
+                        top: (($(window).height() + $('#header').outerHeight()) /2) - 50
                     });
                 });
              
@@ -45,14 +49,10 @@
     <body>
         <div class="content">
             <div class="header" id="header">
-                <a href="/go"><p>No More Boys Club</p></a>
+                <a href="/go"><p style="z-index:50;">No More Boys Club</p></a>
             </div>
-            <div class="about" id="about">
-<!--                <p>JOIN</p> -->
-            </div>
-            <div class="footer" id="footer">
-                <p>COMING JUNE SEVENTH MMXII</p>
-            </div>
+            <a href="/about"><img id="aboutHiddenLink" src="/images/hiddenlinkbar.png" /></a>
+            <a href="/users"><img id="usersHiddenLink" src="/images/hiddenlinkbar.png" /></a>
         </div>
     </body>
 </html>

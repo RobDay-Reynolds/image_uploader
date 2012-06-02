@@ -4,10 +4,11 @@
   <title>No More Boys Club</title>
   <%= stylesheet_link_tag :all %> 
   <link rel="stylesheet" href="/main.css" type="text/css" />
-<!--  <%= javascript_include_tag :all %> -->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="/jquery.textfill.js"></script>
   <script type="text/javascript">
+    var wtfIsThis = [];
+    
     function resizeImage(cssSelector, isInitialResize) {
         var offset = 0;
         if (isInitialResize) {
@@ -37,9 +38,10 @@
             height: newImgHeight
         });
     }
+
     $(window).load(function(){
-        var minWidth = ($(window).width()/18);        
-        var maxWidth = ($(window).width()/3);        
+        var minWidth = ($(window).width()/50);        
+        var maxWidth = ($(window).width()/5);        
 
         resizeImage('.main_image', 1);
         $('#content').textfill({
@@ -48,13 +50,15 @@
         });
         $('.main_text').css({
             position: 'absolute',
-            left: ($(window).width() - $('.main_text').outerWidth())/2,
-            top: ($(window).height() - ($('.main_text').outerHeight() + 10))/2
+            left: ($(window).width() - $('.main_text').outerWidth() + 10)/2,
+            top: ($(window).height() - $('.main_text').outerHeight() - 10)/2
         });
-       
+    });
+
+    $(document).ready(function(){
         $(window).resize(function(){
-            var minWidth = ($(window).width()/18);        
-            var maxWidth = ($(window).width()/3);        
+            var minWidth = ($(window).width()/50);        
+            var maxWidth = ($(window).width()/5);        
 
             resizeImage('.main_image');
             $('#content').textfill({
@@ -64,10 +68,13 @@
             $('.main_text').css({
                 position: 'absolute',
                 left: ($(window).width() - $('.main_text').outerWidth() + 10)/2,
-                top: ($(window).height() - ($('.main_text').outerHeight() + 10))/2
+                top: ($(window).height() - $('.main_text').outerHeight() - 10)/2
             });
         });
-    });                                   
+//          To initially run the function (for some reason we have to run this twice):
+        $(window).resize();
+        $(window).resize();
+    });
   </script>
   <script type="text/javascript" src="/jquery.imagefit-0.2.js"></script>
   <%= csrf_meta_tag %>

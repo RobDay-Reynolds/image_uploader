@@ -7,8 +7,6 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="/jquery.textfill.js"></script>
   <script type="text/javascript">
-    var wtfIsThis = [];
-    
     function resizeImage(cssSelector, isInitialResize) {
         var offset = 0;
         if (isInitialResize) {
@@ -53,10 +51,43 @@
             left: ($(window).width() - $('.main_text').outerWidth() + 10)/2,
             top: ($(window).height() - $('.main_text').outerHeight() - 10)/2
         });
+        var minDimension = Math.min($(document).width(), $(document).height() - 100);
+
+        $('#square_content').css({
+            width: minDimension + 'px',
+            height: minDimension + 'px'
+        });
+        $('#secondary_square_content').css({
+            width: minDimension + 'px',
+            height: minDimension + 'px'
+        });
+        $('#square_content').textfill({
+            maxWidth: minDimension,
+            maxHeight: minDimension,
+            minFontPixels: 5,
+            maxFontPixels: 100,
+            innerTag: 'p'
+        });
+        $('#square_content').css({
+            position: 'absolute',
+            left: ($(window).width() - minDimension)/2,
+            top: -15
+        });
+        $('#secondary_square_content').css({
+            position: 'absolute',
+            left: ($(window).width() - minDimension)/2,
+            top: 0
+        });
+        $('.footer').css({
+            position: 'absolute',
+            left: ($(window).width() - $('.footer').width())/2,
+            top: ($(window).height() - 45)
+        });
     });
 
     $(document).ready(function(){
         $(window).resize(function(){
+            var minDimension = Math.min($(document).width(), $(document).height() - 100);
             var minWidth = ($(window).width()/50);        
             var maxWidth = ($(window).width()/5);        
 
@@ -70,6 +101,36 @@
                 left: ($(window).width() - $('.main_text').outerWidth() + 10)/2,
                 top: ($(window).height() - $('.main_text').outerHeight() - 10)/2
             });
+            $('#square_content').css({
+                width: minDimension + 'px',
+                height: minDimension + 'px'
+            });
+            $('#secondary_square_content').css({
+                width: minDimension + 'px',
+                height: minDimension + 'px'
+            });
+            $('#square_content').textfill({
+                maxWidth: minDimension,
+                maxHeight: minDimension,
+                minFontPixels: 10,
+                maxFontPixels: 100,
+                innerTag: 'div'
+            });
+            $('#square_content').css({
+                position: 'absolute',
+                left: ($(window).width() - minDimension)/2,
+                top: -15
+            });
+            $('#secondary_square_content').css({
+                position: 'absolute',
+                left: ($(window).width() - minDimension)/2,
+                top: 0
+            });
+            $('.footer').css({
+                position: 'absolute',
+                left: ($(window).width() - $('.footer').width())/2,
+                top: ($(window).height() - 45)
+            });
         });
 //          To initially run the function (for some reason we have to run this twice):
         $(window).resize();
@@ -80,8 +141,6 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<div id="content">
 <%= yield %>
-</div>
 </body>
 </html>
